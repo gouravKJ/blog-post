@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ <style>
+    body { font-family: Arial; padding: 20px; }
+    form { max-width: 600px; margin: auto; }
+    input, textarea { width: 100%; margin: 10px 0; padding: 10px; }
+    button { padding: 10px 20px; }
+  </style>
+<body>
+    <h2>hello <%= username %>,write a new posts</h2>
+    <form method="post" action="/posts/new?token=<%= token %>">
+           <input type="text" name="title" placeholder="Post Title" required>
+    <textarea name="content" placeholder="Write your content here..." rows="10" required></textarea>
+    <button type="submit">Publish</button>
+    </form>
+</body>
+</html>

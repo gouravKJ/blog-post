@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .post { margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    h2 { margin-bottom: 5px; }
+    .author { color: #555; font-size: 0.9em; }
+  </style>
+<body>
+    <h2>ALL blog posts</h2>
+    <% posts.forEach(post=> { %>
+        <div class="post">
+      <h2><%= post.title %></h2>
+      <div class="author">by <%= post.username %> | <%= new Date(post.created_at).toLocaleString() %></div>
+      <p><%= post.content %></p>
+   <% } ) %>
+     
+</body>
+</html>

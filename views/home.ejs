@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #eef2f3;
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        background-color: #343a40;
+        color: white;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+      }
+      .container {
+        padding: 30px;
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      .post {
+        background-color: white;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .post h3 {
+        margin: 0 0 10px;
+      }
+      .post p {
+        margin: 0 0 15px;
+      }
+      .post-actions {
+        display: flex;
+        gap: 10px;
+      }
+      .post-actions a {
+        text-decoration: none;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      .edit-btn {
+        background-color: #007bff;
+      }
+      .delete-btn {
+        background-color: #dc3545;
+      }
+      .create-post {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 10px 15px;
+        background-color: #28a745;
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+      }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div><strong>Welcome <%= username %></strong></div>
+        <div>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+      <a class="create-post" href="/posts/new?token=<%= token %>">+ NEW Post</a>
+
+      <% if (posts.length === 0) { %>
+        <p>No posts yet. Start writing your first blog post!</p>
+      <% } %>
+
+      <% posts.forEach(post => { %>
+        <div class="post">
+          <h3><%= post.title %></h3>
+          <p><%= post.content.substring(0, 150) %>....</p>
+          <div class="post-actions">
+            <!-- If you want, add edit link here -->
+            <a href="/posts/delete/<%= post.id %>?token=<%= token %>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+</body>
+</html>
